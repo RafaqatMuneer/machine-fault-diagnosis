@@ -6,5 +6,6 @@ pandas==3.0.5
 Requests==2.34.2
 xgboost==3.3.0
 lightgbm==4.7.0
+imbalanced-learn==0.14.2
 scikit_learn==1.9.0
 gunicorn==26.0.0
