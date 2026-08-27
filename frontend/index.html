@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Machine Health Monitor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="app-header">
+            <h1>Machine Fault Detection System</h1>
+            <p>AI-Powered Machine Failure Diagnostics</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Direct Child 1: ML Inputs Form -->
+            <form id="inspection-form" class="card">
+                <h2>Sensor Readings</h2>
+                <p class="subtitle">Adjust parameters to test ML predicition</p>
+                
+                <div class="form-fields">
+                    <div class="input-group">
+                        <label for="machine_type">Machine Type
+                            <span class="input-hint">(L, M and H)</span>
+                        </label>
+                        <select id="machine_type" required>
+                            <option value="L" selected>Low Quality (L)</option>
+                            <option value="M">Medium Quality (M)</option>
+                            <option value="H">High Quality (H)</option>
+                        </select>
+                    </div>
+
+                    <!-- Feature 2: Air temperature-->
+                    <div class="input-group">
+                         <label for="air_temp">Air Temperature [K]
+                            <span class="input-hint">(Min: 295.3 and Max: 304.5)</span>
+                        </label>
+                        <input type="number" id="air_temp" name="air_temp" min="295.3" max="304.5" value="300" step=".1" required>
+                    </div>
+
+                    <!-- Feature 3: Process temperature-->
+                    <div class="input-group">
+                         <label for="process_temp">Process Temperature [K]
+                            <span class="input-hint">(Min: 305.7 and Max: 313.8)</span>
+                        </label>
+                        <input type="number" id="process_temp" name="process_temp" min="305.7" max="313.8" value="310" step=".1" required>
+                    </div>
+
+                    <!-- Feature 4: Rotational Speed -->
+                    <div class="input-group">
+                        <label for="rotational_speed">Rotational Speed [rpm]
+                            <span class="input-hint">(Min: 1168 and Max: 2886)</span>
+                        </label>
+                        <input type="number" id="rotational_speed" name="rotational_speed" min="1168" max="2886" value="1538" required>
+                    </div>
+
+                    <!-- Feature 5: Torque -->
+                    <div class="input-group">
+                        <label for="torque">Torque [Nm]
+                            <span class="input-hint">(Min: 3.8 and Max: 76.6)</span>
+                        </label>
+                        <input type="number" id="torque" name="torque" min="3.8" max="76.6" value="39.9" step=".1" required>
+                    </div>
+                    
+                    <!-- Feature 6: Tool Wear -->
+                    <div class="input-group">
+                        <label for="tool_wear">Tool Wear
+                            <span class="input-hint">(Min: 0 and Max: 253)</span>
+                        </label>
+                        <input type="number" id="tool_wear" name="tool_wear" min="0" max="253" value="108" required>
+                    </div>
+
+                </div>
+
+                <button type="submit" id="predict_btn" class="btn">Predict Machine Failure</button>
+            </form>
+
+            <!-- Direct Child 2: ML Results Card -->
+            <!-- <div class="card results-card">
+                <h2>Diagnostic Results</h2>
+                
+                <div class="badge-container">
+                    <div id="status_badge" class="badge status-neutral">READY</div>
+                </div>
+
+                <div class="result-details">
+                    <div class="detail-item">
+                        <span class="label">Predicted Class:</span>
+                        <span id="defect_class" class="value">None</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Confidence Score:</span>
+                        <span id="confidence_score" class="value">0.0%</span>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Right Column / Secondary Area -->
+            <div class="results-container">   
+                <!-- Dynamic Results Card -->
+                <div class="card results-card">
+                    <h2>Diagnostic Output</h2>
+                    
+                    <div class="badge-container">
+                        <div id="status_badge" class="badge status-neutral">READY</div>
+                    </div>
+
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <span class="label">Predicted Class:</span>
+                            <span id="defect_class" class="value">None</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Confidence Score:</span>
+                            <span id="confidence_score" class="value">0.0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Static Model Architecture & Explanation Card -->
+                <div class="card info-card">
+                    <div class="info-header">
+                        <span class="info-icon">⚙️</span>
+                        <h3>How It Works</h3>
+                    </div>
+                    <p class="info-description">
+                        This dashboard utilizes a multi-model <strong>Soft-Voting Ensemble Engine</strong> to predict machine component failures before they occur.
+                    </p>
+                    
+                    <ul class="info-list">
+                        <li>
+                            <strong>Random Forest:</strong> Analyzes non-linear sensor relationships and reduces prediction variance.
+                        </li>
+                        <li>
+                            <strong>LightGBM:</strong> Handles fast leaf-wise gradient boosting across continuous telemetry streams.
+                        </li>
+                        <li>
+                            <strong>XGBoost:</strong> Optimizes regularization to prevent false alarms on rare failure modes.
+                        </li>
+                    </ul>
+                    
+                    <div class="info-footer">
+                        <span>Probability outputs are averaged across all three models to ensure maximum diagnostic reliability.</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
