@@ -1,3 +1,4 @@
+// Restricting the number value for all input fields to be within minimum and maximum values
 document.querySelectorAll('input[type="number"], input[type="range"]').forEach(input => {
     input.addEventListener('change', function() {
         const min = parseFloat(this.min);
@@ -17,12 +18,14 @@ document.querySelectorAll('input[type="number"], input[type="range"]').forEach(i
     });
     });
 
-    // prediction button
-    document.getElementById('inspection-form').addEventListener('submit', async function(e) {
+    // Prediction button click action for submission of form
+    document.getElementById('inspection-form').addEventListener('submit', async function(e) { //attach an async handler upon submit event
+        //Page is not refreshed for every submit event
         e.preventDefault();
         // Prediction button and state update
         const predictbtn = document.getElementById("predict_btn");
         predictbtn.textContent = 'Analyzing....';
+        // Disable button while waiting for response 
         predictbtn.disabled = true;
         
         // Collect values from the input fields
@@ -46,6 +49,7 @@ document.querySelectorAll('input[type="number"], input[type="range"]').forEach(i
         // body = JSON.stringify(payload)
         // alert(body)
         try {
+            //await would pause execution here until backend API return data
             const response = await fetch('https://machine-fault-diagnosis.onrender.com/api/predict', {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
