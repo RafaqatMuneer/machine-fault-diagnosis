@@ -17,14 +17,6 @@ document.querySelectorAll('input[type="number"], input[type="range"]').forEach(i
     });
     });
 
-    //  X = pd.DataFrame([{
-    //         "Type" : str(data["Type"]), //L.M.H
-    //         "Air temperature [K]" : float(data["Air temperature [K]"]),  //295.3 - 304.5 mean : 300
-    //         "Process temperature [K]" : float(data["Process temperature [K]"]), //305.7 - 313.8 mean 310
-    //         "Rotational speed [rpm]" : int(data["Rotational speed [rpm]"]), //1168 - 2886 mean 1538
-    //         "Torque [Nm]" : float(data["Torque [Nm]"]), //3.8 - 76.6 mean 39.99
-    //         "Tool wear [min]" : int(data["Tool wear [min]"]) // 0 - 253 mean 108
-    //     }])
     // prediction button
     document.getElementById('inspection-form').addEventListener('submit', async function(e) {
         e.preventDefault();
