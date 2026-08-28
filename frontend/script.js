@@ -69,6 +69,7 @@ document.querySelectorAll('input[type="number"], input[type="range"]').forEach(i
             confidenceDisplay.innerText = data.confidence + "%";
             defectInfo.innerText = data.final_prediction;
 
+            // Machine failure badge dynamic updation
             if (data.machine_failure === "FAULT DETECTED") {
                 badge.innerText = "FAULT DETECTED";
                 badge.className = "badge status-fail";
@@ -81,7 +82,9 @@ document.querySelectorAll('input[type="number"], input[type="range"]').forEach(i
             console.error("Predcition failed", error);
             alert('Unable to process prediction request. Ensure the backend server is running.');
         } finally {
+            // change text of prediction button after 1st run
             predictbtn.textContent = 'Predict Machine Failure';
+            // Enable prediction button after first response
             predictbtn.disabled = false;
         } 
 
