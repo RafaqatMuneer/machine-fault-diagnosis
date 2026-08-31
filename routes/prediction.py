@@ -17,6 +17,7 @@ def predict():
     data = request.get_json()
 
     try:
+        # pandas dataframe for getting input from user for each variable with their type
         X = pd.DataFrame([{
             "Type" : str(data["Type"]),
             "Air temperature [K]" : float(data["Air temperature [K]"]),
@@ -37,10 +38,12 @@ def predict():
         lgbm_probability= lgbm__model.predict_proba(X)[0]
         xgb_probability = xgb_model.predict_proba(X)[0]
 
+        # probability on voting based for each detected class by the models
         ensemble_probability = (rf_probability + lgbm_probability + xgb_probability) / 3
+        # final output based on vote by each class 
         final_index = int(np.argmax(ensemble_probability))
 
-        # Define class map matching your dataset encoding
+        # Define output class labels matching our dataset calumn names
         class_names = {
             0: "No Failure",
             1: "Tool Wear Failure (TWF)",
@@ -51,14 +54,17 @@ def predict():
             6: "General Machine Failure"
         }
 
+        # Either any failure detected or not
         machine_failure = "HEALTHY" if final_index == 0 else "FAULT DETECTED"
 
+        # Map the final prediction to the each class instead of numbers output
         final_prediction = class_names[final_index]
 
+        # calculate the confidence and round it upto two decimel
         confidence = f"{ensemble_probability[final_index]* 100:.2f}"
 
         results = {
-            "machine_failure": machine_failure,  # Output: 1 or 0
+            "machine_failure": machine_failure,  # Output: HEALTHY or FAULT DETECTED
             "final_prediction": final_prediction,  # Output: 'Heat Dissipation Failure (HDF)'
             "confidence" : confidence,
         }
