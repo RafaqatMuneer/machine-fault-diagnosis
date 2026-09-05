@@ -11,6 +11,8 @@ CORS(app)
 # def home():
 #     """Serves the frontend page"""
 #     return render_template('index.html')
+
+# Register blue prints 
 app.register_blueprint(prediction_bp, url_prefix = '/api')
 app.register_blueprint(health_bp, url_prefix = '/api')
 
