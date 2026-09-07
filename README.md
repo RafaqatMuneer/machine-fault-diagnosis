@@ -12,7 +12,7 @@ The project also includes a web-based frontend and Flask backend, demonstrating 
 
 Unexpected machine failures can result in production downtime, maintenance costs, and reduced operational efficiency. Predictive maintenance systems use machine operating parameters to identify potential failures before they cause significant disruption.
 
-This project implements a machine fault detection system that accepts machine operating parameters and predicts whether the machine is:
+This project implements a machine fault detection system that accepts machine operating parameters from sensors and predicts whether the machine is working normally or there is some chance of it's failure as:
 
 * **HEALTHY**
 * **FAULT DETECTED**
@@ -35,19 +35,11 @@ The frontend is deployed on Vercel and is available here:
 
 [**Open the Machine Fault Detection System**](https://machine-fault-diagnosis.vercel.app/)
 
-> **Deployment note:** The Flask backend is deployed on Render's free tier. Because free-tier services may sleep after approximately 15 minutes of inactivity, the first prediction request after a period of inactivity may take longer while the backend service starts again. Subsequent requests should respond normally once the service is active.
+> **Deployment note:** The Flask backend is deployed on Render's free tier, it may sleep after approximately 15 minutes of inactivity, the first prediction request after a period of inactivity may take longer while the backend service starts again. Subsequent requests should respond normally once the service is active.
 
 ---
 
-## 📂 Source Code
-
-The complete project source code, including the frontend, backend, machine learning files, and deployment configuration, is available on GitHub:
-
-[**View the GitHub Repository**](https://github.com/RafaqatMuneer/machine-fault-diagnosis)
-
----
-
-## 🎯 Objectives
+## 🎯 Steps / Objectives
 
 The main objectives of the project are to:
 
@@ -414,8 +406,6 @@ The backend follows a modular structure using Flask Blueprints rather than placi
 
 ## 📁 Project Structure
 
-The project source code is available in the [GitHub repository](https://github.com/RafaqatMuneer/machine-fault-diagnosis).
-
 A simplified representation of the project architecture is:
 
 ```text
@@ -581,17 +571,6 @@ The vanilla HTML, CSS, and JavaScript frontend is deployed on Vercel:
 [**https://machine-fault-diagnosis.vercel.app/**](https://machine-fault-diagnosis.vercel.app/)
 
 The Flask backend is deployed on Render and is accessed by the frontend through HTTP requests.
-
-### Render Free-Tier Notice
-
-The backend uses Render's free tier. After approximately 15 minutes without activity, the service may enter a sleeping state. When a new request arrives after the service has gone to sleep, the backend may require additional time to wake up.
-
-As a result:
-
-* The first request after inactivity may be slower.
-* The frontend may appear to wait while the backend starts.
-* Later requests should generally respond faster once the service is awake.
-* This behavior is a limitation of the hosting plan rather than the prediction logic.
 
 ---
 
